@@ -1,0 +1,38 @@
+syntax = "proto3";
+
+package pb;
+
+import "filter.proto";
+
+option go_package = "github.com/pso-dev/wiltshire-proto/pb";
+
+message Project {
+    int64 id = 1; // employee id
+    string opportunity_id = 2;
+    string changepoint_id = 3;
+    string name = 4;
+    string customer = 5;
+    string end_customer = 6;
+    string revenue_type = 7;
+    string project_maanger = 8;
+}
+
+message ProjectRequest {
+    Project project = 1;
+    Filter filter = 2;
+}
+
+message ProjectResponse {
+    string message = 1;
+    Metadata metadata = 2;
+    Project project = 3;
+    repeated Project projects = 4;
+}
+
+service ProjectService {
+    rpc InsertProject(ProjectRequest) returns (ProjectResponse);
+    rpc GetProjectByOppId(ProjectRequest) returns (ProjectResponse);
+    rpc GetProjectByCPId(ProjectRequest) returns (ProjectResponse);
+    rpc GetAllProjects(ProjectRequest) returns (ProjectResponse);
+    rpc UpdateProject(ProjectRequest) returns (ProjectResponse);
+}
