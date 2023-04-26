@@ -14,7 +14,8 @@ message Project {
     string customer = 5;
     string end_customer = 6;
     string revenue_type = 7;
-    string project_maanger = 8;
+    string status = 8;
+    string project_manager = 9;
 }
 
 message ProjectRequest {
